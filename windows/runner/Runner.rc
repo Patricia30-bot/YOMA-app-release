@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "yoma_novo" "\0"
+            VALUE "FileDescription", "meu_projeto_flutter" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "yoma_novo" "\0"
+            VALUE "InternalName", "meu_projeto_flutter" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "yoma_novo.exe" "\0"
-            VALUE "ProductName", "yoma_novo" "\0"
+            VALUE "OriginalFilename", "meu_projeto_flutter.exe" "\0"
+            VALUE "ProductName", "meu_projeto_flutter" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

@@ -1,6 +1,6 @@
 {
-    "name": "yoma_novo",
-    "short_name": "yoma_novo",
+    "name": "meu_projeto_flutter",
+    "short_name": "meu_projeto_flutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
