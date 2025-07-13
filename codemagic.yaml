@@ -3,6 +3,8 @@ workflows:
     name: YOMA Release Build
     max_build_duration: 60
     environment:
+      groups:
+        - apple_login
       flutter: "3.32.6"
       xcode: latest
       cocoapods: default
