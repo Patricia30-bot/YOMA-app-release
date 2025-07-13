@@ -29,9 +29,5 @@ workflows:
       app_store_connect:
         apple_id: patriciagiorgetto@hotmail.com
         password: $APP_SPECIFIC_PASSWORD
-
-groups:
-  apple_login:
-    environment:
-      vars:
-        APP_SPECIFIC_PASSWORD: APP_SPECIFIC_PASSWORD
+    groups:
+      - apple_login
