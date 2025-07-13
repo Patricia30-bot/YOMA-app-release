@@ -3,29 +3,23 @@ workflows:
     name: YOMA Release Build
     max_build_duration: 60
     environment:
-      flutter: "3.22.1"
+      flutter: "3.32.6"
       xcode: latest
       cocoapods: default
       vars:
         APP_NAME: "YOMA"
-        PACKAGE_NAME: com.patriciagiorgetto.yoma
+        BUNDLE_ID: "com.patricia.yoma"
+        FLAVOR: "release"
     scripts:
       - name: Install Flutter dependencies
         script: |
           flutter pub get
-      - name: Build Android AAB
+      - name: Build Android
+        script: |
+          flutter build apk --release
+      - name: Build AAB
         script: |
           flutter build appbundle --release
-      - name: Build iOS (simulação apenas, se desejar testar o pipeline)
-        script: |
-          flutter build ios --release --no-codesign
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
       - build/app/outputs/bundle/release/app-release.aab
-    triggering:
-      events:
-        - push
-    publishing:
-      email:
-        recipients:
-          - patriciagiorgetto@hotmail.com
