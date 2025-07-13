@@ -8,24 +8,29 @@ workflows:
       cocoapods: default
       vars:
         APP_NAME: "YOMA"
-        PACKAGE_NAME: "com.patriciagiorgetto.yoma"
-      groups:
-        - app_store_credentials
-        - keystore_credentials
-            scripts:
+        PACKAGE_NAME: com.patriciagiorgetto.yoma
+    android:
+      store_credentials: google_play
+    ios:
+      provisioning_profiles:
+        - ios_distribution
+    scripts:
       - name: Install Flutter dependencies
         script: |
           flutter pub get
       - name: Build Android AAB
         script: |
           flutter build appbundle --release
-      - name: Build iOS (no code signing)
+      - name: Build iOS (simulação apenas, se desejar testar o pipeline)
         script: |
           flutter build ios --release --no-codesign
     artifacts:
-      - build/app/outputs/**/*.aab
-      - build/ios/iphoneos/*.app
+      - build/app/outputs/flutter-apk/app-release.apk
+      - build/app/outputs/bundle/release/app-release.aab
+    triggering:
+      events:
+        - push
     publishing:
-      app_store_connect:
-        auth: integration
-        submit_to_testflight: true
+      email:
+        recipients:
+          - patriciagiorgetto@hotmail.com
