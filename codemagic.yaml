@@ -1,4 +1,4 @@
-wworkflows:
+workflows:
   yoma_release:
     name: YOMA Release Build
     max_build_duration: 60
@@ -19,16 +19,5 @@ wworkflows:
       - name: Build Android AAB
         script: |
           flutter build appbundle --release
-      - name: Build iOS (sem assinatura)
-        script: |
-          flutter build ios --release --no-codesign
     artifacts:
       - build/app/outputs/bundle/release/app-release.aab
-      - build/ios/ipa/*.ipa
-    publishing:
-      email:
-        recipients:
-          - patriciagiorgetto@hotmail.com
-      app_store:
-        auth: integration
-        submit_to_testflight: true
