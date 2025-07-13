@@ -9,11 +9,6 @@ workflows:
       vars:
         APP_NAME: "YOMA"
         PACKAGE_NAME: com.patriciagiorgetto.yoma
-    android:
-      store_credentials: google_play
-    ios:
-      provisioning_profiles:
-        - ios_distribution
     scripts:
       - name: Install Flutter dependencies
         script: |
