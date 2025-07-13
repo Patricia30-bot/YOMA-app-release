@@ -25,3 +25,9 @@ workflows:
     artifacts:
       - build/app/outputs/bundle/release/app-release.aab
       - build/app/outputs/flutter-apk/app-release.apk
+
+    publishing:
+      app_store_connect:
+        apple_id: patriciagiorgetto@hotmail.com
+        app_password: $APP_SPECIFIC_PASSWORD
+        bundle_id: com.patriciagiorgetto.yoma
