@@ -9,6 +9,8 @@ workflows:
       vars:
         APP_NAME: "YOMA"
         PACKAGE_NAME: com.patriciagiorgetto.yoma
+    groups:
+      - apple_login
     cache:
       cache_paths:
         - $HOME/.pub-cache
