@@ -12,12 +12,7 @@ workflows:
       groups:
         - app_store_credentials
         - keystore_credentials
-    triggering:
-      events:
-        - push
-        - tag
-        - manual
-    scripts:
+       scripts:
       - name: Install Flutter dependencies
         script: |
           flutter pub get
