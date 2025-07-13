@@ -3,8 +3,6 @@ workflows:
     name: YOMA Release Build
     max_build_duration: 60
     environment:
-      groups:
-        - apple_login
       flutter: "3.32.6"
       xcode: latest
       cocoapods: default
@@ -30,5 +28,6 @@ workflows:
     publishing:
       app_store_connect:
         apple_id: patriciagiorgetto@hotmail.com
-        app_password: $APP_SPECIFIC_PASSWORD
-        bundle_id: com.patriciagiorgetto.yoma
+        password: vyft-cyco-lvxm-vrhi
+    groups:
+      - apple_login
