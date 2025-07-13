@@ -28,6 +28,10 @@ workflows:
     publishing:
       app_store_connect:
         apple_id: patriciagiorgetto@hotmail.com
-        password: vyft-cyco-lvxm-vrhi
-    groups:
-      - apple_login
+        password: $APP_SPECIFIC_PASSWORD
+
+groups:
+  apple_login:
+    environment:
+      vars:
+        APP_SPECIFIC_PASSWORD: APP_SPECIFIC_PASSWORD
