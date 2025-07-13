@@ -1,6 +1,6 @@
-# meu_projeto_flutter
+# YOMA-app-release
 
-A new Flutter project.
+Versão final do app YOMA para publicação.
 
 ## Getting Started
 
@@ -14,3 +14,4 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
