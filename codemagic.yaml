@@ -12,6 +12,7 @@ workflows:
       groups:
         - app_store_credentials
         - keystore_credentials
+     
        scripts:
       - name: Install Flutter dependencies
         script: |
