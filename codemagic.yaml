@@ -1,4 +1,4 @@
-workflows:
+wworkflows:
   yoma_release:
     name: YOMA Release Build
     max_build_duration: 60
@@ -8,18 +8,27 @@ workflows:
       cocoapods: default
       vars:
         APP_NAME: "YOMA"
-        BUNDLE_ID: "com.patricia.yoma"
-        FLAVOR: "release"
+        PACKAGE_NAME: com.patriciagiorgetto.yoma
+    cache:
+      cache_paths:
+        - $HOME/.pub-cache
     scripts:
       - name: Install Flutter dependencies
         script: |
           flutter pub get
-      - name: Build Android
-        script: |
-          flutter build apk --release
-      - name: Build AAB
+      - name: Build Android AAB
         script: |
           flutter build appbundle --release
+      - name: Build iOS (sem assinatura)
+        script: |
+          flutter build ios --release --no-codesign
     artifacts:
-      - build/app/outputs/flutter-apk/app-release.apk
       - build/app/outputs/bundle/release/app-release.aab
+      - build/ios/ipa/*.ipa
+    publishing:
+      email:
+        recipients:
+          - patriciagiorgetto@hotmail.com
+      app_store:
+        auth: integration
+        submit_to_testflight: true
