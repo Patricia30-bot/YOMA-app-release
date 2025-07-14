@@ -10,7 +10,7 @@ workflows:
         APP_NAME: "YOMA"
         PACKAGE_NAME: com.patriciagiorgetto.yoma
       groups:
-        - apple_login
+        - apple_login  # usa APP_SPECIFIC_PASSWORD seguro
 
     cache:
       cache_paths:
@@ -33,7 +33,7 @@ workflows:
         script: |
           flutter build ios --release --no-codesign
 
-      - name: Create IPA
+      - name: Archive and export IPA
         script: |
           xcodebuild -workspace ios/Runner.xcworkspace \
             -scheme Runner \
@@ -57,4 +57,3 @@ workflows:
       app_store_connect:
         apple_id: patriciagiorgetto@hotmail.com
         password: $APP_SPECIFIC_PASSWORD
-        team_id: T95384B3A4
