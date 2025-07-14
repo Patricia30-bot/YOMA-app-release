@@ -57,4 +57,4 @@ workflows:
       app_store_connect:
         apple_id: patriciagiorgetto@hotmail.com
         password: $APP_SPECIFIC_PASSWORD
-        team_id: apple_login
+        team_id: T95384B3A4
