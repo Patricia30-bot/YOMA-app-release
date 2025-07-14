@@ -6,11 +6,11 @@ workflows:
       flutter: "3.32.6"
       xcode: latest
       cocoapods: default
+      groups:
+        - apple_login  # Usa variáveis seguras desse grupo
       vars:
         APP_NAME: "YOMA"
         PACKAGE_NAME: com.patriciagiorgetto.yoma
-      groups:
-        - apple_login  # Usa variáveis seguras desse grupo
 
     cache:
       cache_paths:
@@ -44,4 +44,7 @@ workflows:
       app_store_connect:
         apple_id: patriciagiorgetto@hotmail.com
         password: $APP_SPECIFIC_PASSWORD
+<<<<<<< HEAD
         team_id: ABCDE12345
+=======
+>>>>>>> 03f1906 (fix: ajuste final do workflow)
