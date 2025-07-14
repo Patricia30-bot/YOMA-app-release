@@ -44,7 +44,3 @@ workflows:
       app_store_connect:
         apple_id: patriciagiorgetto@hotmail.com
         password: $APP_SPECIFIC_PASSWORD
-<<<<<<< HEAD
-        team_id: ABCDE12345
-=======
->>>>>>> 03f1906 (fix: ajuste final do workflow)
