@@ -10,27 +10,35 @@ workflows:
         APP_NAME: "YOMA"
         PACKAGE_NAME: com.patriciagiorgetto.yoma
       groups:
-        - apple_login  # <- esse grupo precisa conter APP_SPECIFIC_PASSWORD no Codemagic
+        - apple_login  # Usa variáveis seguras desse grupo
+
     cache:
       cache_paths:
         - $HOME/.pub-cache
+
     scripts:
       - name: Install Flutter dependencies
         script: |
           flutter pub get
+
       - name: Build Android AAB
         script: |
           flutter build appbundle --release
+
       - name: Build Android APK
         script: |
           flutter build apk --release
+
       - name: Build iOS
         script: |
           flutter build ios --release --no-codesign
+
     artifacts:
       - build/app/outputs/bundle/release/app-release.aab
       - build/app/outputs/flutter-apk/app-release.apk
       - build/ios/iphoneos/Runner.app
+      - build/ios/ipa/*.ipa
+
     publishing:
       app_store_connect:
         apple_id: patriciagiorgetto@hotmail.com
