@@ -5,10 +5,11 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = sfs
+PRODUCT_NAME = YOMA
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.sfs
-
+PRODUCT_BUNDLE_IDENTIFIER = dominio.yoma.com;
+ dominio.yoma.com;
+ com.patricia.yoma
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2025 com.example. All rights reserved.

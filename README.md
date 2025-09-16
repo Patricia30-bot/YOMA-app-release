@@ -1,17 +1,18 @@
-# YOMA-app-release
+# YOMA - Você Não Está Sozinha 💜
 
-Versão final do app YOMA para publicação.
+Aplicativo discreto para denúncias de violência doméstica e situações de risco, feito especialmente para proteger mulheres, crianças e vítimas vulneráveis.
 
-## Getting Started
+- 🚨 Botão de emergência
+- 📍 Envio de localização
+- 📲 Integração com Firebase
+- 🕵️ Modo anônimo e seguro
+- 🧠 Compatível com smartwatch e iOS/Android
+- 🌐 Painel em tempo real para autoridades
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+Desenvolvido por: **Patrícia Danelli Santos Giorgetto**
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Versão: 1.0  
+Flutter 3.13.9
 

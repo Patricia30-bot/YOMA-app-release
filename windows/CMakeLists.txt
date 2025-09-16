@@ -1,26 +1,7 @@
 # Project-level configuration.
 cmake_minimum_required(VERSION 3.14)
-<<<<<<< HEAD
-project(meu_projeto_flutter LANGUAGES CXX)
-
-# The name of the executable created for the application. Change this to change
-# the on-disk name of your application.
-set(BINARY_NAME "meu_projeto_flutter")
-=======
-<<<<<<< HEAD
-project(sfs LANGUAGES CXX)
-
-# The name of the executable created for the application. Change this to change
-# the on-disk name of your application.
-set(BINARY_NAME "sfs")
-=======
-project(yoma_app_novo LANGUAGES CXX)
-
-# The name of the executable created for the application. Change this to change
-# the on-disk name of your application.
-set(BINARY_NAME "yoma_app_novo")
->>>>>>> 94091f3 (Primeiro commit do projeto YOMA)
->>>>>>> 17364bc (Primeiro commit do projeto YOMA)
+set(BINARY_NAME "YOMA")
+set(APPLICATION_ID "com.patricia.yoma")
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
 # versions of CMake.
