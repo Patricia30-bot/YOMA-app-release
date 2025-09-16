@@ -56,4 +56,4 @@ workflows:
     publishing:
       app_store_connect:
         apple_id: patriciagiorgetto@hotmail.com
-        password: $APP_SPECIFIC_PASSWORD
+        password: zoty-lxlq-lusc-rrlq
