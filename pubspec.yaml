@@ -3,6 +3,7 @@ workflows:
     name: iOS Dev IPA
     max_build_duration: 60
     environment:
+      sdk: '>=3.8.0 <4.0.0'
       flutter: stable      # ou fixe uma versão que você usa localmente
       xcode: latest
       vars:
