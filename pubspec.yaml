@@ -1,84 +1,60 @@
 workflows:
-  ios_dev_ipa:
-    name: iOS Dev IPA
+  yoma_release:
+    name: YOMA Release Build
     max_build_duration: 60
     environment:
-      sdk: '>=3.8.0 <4.0.0'
-      flutter: stable      # ou fixe uma versão que você usa localmente
+      flutter: stable       # ou uma versão fixa, ex: "3.32.6"
       xcode: latest
+      cocoapods: default
       vars:
-        BUNDLE_ID: dominio.yoma.com          # <- tem que bater com o Xcode
-        DEVELOPMENT_TEAM_ID: T95384B3A4      # <- seu Team ID
-        APP_STORE_CONNECT_ISSUER_ID: 383b2b04-b776-4cc4-8882-ad7107d3b643
-        APP_STORE_CONNECT_KEY_IDENTIFIER: 5UA82DPFQR
-        APP_STORE_CONNECT_PRIVATE_KEY: |
-          -----BEGIN PRIVATE KEY-----
-          (COLE AQUI O CONTEÚDO .p8 COMPLETO, INCLUINDO BEGIN/END)
-          -----END PRIVATE KEY-----
+        APP_NAME: "YOMA"
+        PACKAGE_NAME: com.patriciagiorgetto.yoma
+      groups:
+        - apple_login       # grupo de variáveis seguras do Codemagic
+                            # (APP_SPECIFIC_PASSWORD ou API key do App Store Connect)
+
     cache:
       cache_paths:
         - $HOME/.pub-cache
 
     scripts:
-      - name: Debug vars
+      - name: Install Flutter dependencies
         script: |
-          echo "Team ID: ${DEVELOPMENT_TEAM_ID}"
-          echo "Bundle: ${BUNDLE_ID}"
+          flutter pub get
 
-      # 1) Baixa certificado/perfil de desenvolvimento do App Store Connect
-      - name: Fetch signing files (Development)
+      - name: Build Android AAB
         script: |
-          app-store-connect fetch-signing-files \
-            "${APP_STORE_CONNECT_ISSUER_ID}" \
-            "${APP_STORE_CONNECT_KEY_IDENTIFIER}" \
-            "${APP_STORE_CONNECT_PRIVATE_KEY}" \
-            --type IOS_APP_DEVELOPMENT \
-            --bundle-id "${BUNDLE_ID}" \
-            --create
+          flutter build appbundle --release
 
-      # 2) Instala certificados no keychain e aplica os perfis ao projeto
-      - keychain add-certificates
-      - xcode-project use-profiles
+      - name: Build Android APK
+        script: |
+          flutter build apk --release
 
-      # 3) Archive com assinatura automática e seu TEAM/BUNDLE
-      - name: Archive (Xcode)
+      - name: Build iOS (no codesign)
+        script: |
+          flutter build ios --release --no-codesign
+
+      - name: Archive and export IPA
         script: |
           xcodebuild -workspace ios/Runner.xcworkspace \
-                     -scheme Runner \
-                     -configuration Release \
-                     -archivePath build/ios/archive/Runner.xcarchive \
-                     DEVELOPMENT_TEAM="${DEVELOPMENT_TEAM_ID}" \
-                     CODE_SIGN_STYLE=Automatic \
-                     PRODUCT_BUNDLE_IDENTIFIER="${BUNDLE_ID}" \
-                     archive
+            -scheme Runner \
+            -sdk iphoneos \
+            -configuration Release \
+            -archivePath build/ios/archive/Runner.xcarchive \
+            archive
 
-      # 4) Exporta o IPA sem precisar de ExportOptions.plist
-      - name: Export IPA (Development)
-        script: |
-          xcode-project build-ipa \
-            --archive-path build/ios/archive/Runner.xcarchive \
-            --export-method development \
-            --team-id "${DEVELOPMENT_TEAM_ID}"
-
-      # (Opcional) Flutter deps & builds adicionais
-      - name: Flutter pub get
-        script: flutter pub get
-      - name: Build Android AAB
-        script: flutter build appbundle --release
-      - name: Build Android APK
-        script: flutter build apk --release
-      - name: Build iOS (no codesign, opcional)
-        script: flutter build ios --release --no-codesign
+          xcodebuild -exportArchive \
+            -archivePath build/ios/archive/Runner.xcarchive \
+            -exportOptionsPlist ios/ExportOptions.plist \
+            -exportPath build/ios/ipa
 
     artifacts:
-      - build/ios/ipa/*.ipa
-      - build/ios/iphoneos/Runner.app
       - build/app/outputs/bundle/release/app-release.aab
       - build/app/outputs/flutter-apk/app-release.apk
+      - build/ios/ipa/*.ipa
+      - build/ios/iphoneos/Runner.app
 
-    # Publicação (opcional). Se quiser subir para App Store Connect automaticamente:
-    #  - use Apple ID + app-specific password OU API Key de Upload do Codemagic.
     publishing:
       app_store_connect:
         apple_id: patriciagiorgetto@hotmail.com
-        password: $APP_SPECIFIC_PASSWORD   # defina essa env var segura no Codemagic
+        password: $APP_SPECIFIC_PASSWORD   # variável segura criada no Codemagic
