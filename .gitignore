@@ -18,6 +18,7 @@ migrate_working_dir/
 *.iws
 .idea/
 
+# VS Code related
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
@@ -43,3 +44,46 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/android/app/build/
+/android/build/
+/android/.gradle/
+/android/local.properties
+/android/key.properties
+
+# iOS specific
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/App.framework
+ios/Flutter/Generated.xcconfig
+ios/Flutter/ephemeral/
+ios/Flutter/Flutter.podspec
+
+# macOS specific
+macos/Pods/
+macos/.symlinks/
+macos/Flutter/ephemeral/
+
+# Windows specific
+windows/flutter/ephemeral/
+
+# Linux specific
+linux/flutter/ephemeral/
+
+# Coverage
+coverage/
+
+# Firebase and other secrets (example)
+/*.keys
+*.jks
+*.keystore
+
+# Fastlane related (if used)
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# JetBrains Fleet
+.fleet/
