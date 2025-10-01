@@ -24,15 +24,18 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+signingConfigs {
+    create("release") {
+        keyAlias = findProperty("keyAlias") as String? ?: ""
+        keyPassword = findProperty("keyPassword") as String? ?: ""
+        storePassword = findProperty("storePassword") as String? ?: ""
 
-    signingConfigs {
-        create("release") {
-            keyAlias = findProperty("keyAlias") as String? ?: ""
-            keyPassword = findProperty("keyPassword") as String? ?: ""
-            storeFile = file(findProperty("storeFile") as String? ?: "")
-            storePassword = findProperty("storePassword") as String? ?: ""
+        val storeFilePath = findProperty("storeFile") as String?
+        if (!storeFilePath.isNullOrBlank()) {
+            storeFile = file(storeFilePath)
         }
     }
+}
 
     buildTypes {
         getByName("release") {
