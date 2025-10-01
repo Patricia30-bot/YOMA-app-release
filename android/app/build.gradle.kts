@@ -1,6 +1,6 @@
 plugins {
     id("com.android.application")
-    id("kotlin-android")
+    id("org.jetbrains.kotlin.android")
     id("dev.flutter.flutter-gradle-plugin")
 }
 
@@ -16,12 +16,21 @@ android {
         versionName = "1.0"
     }
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+
     signingConfigs {
         create("release") {
-            keyAlias = System.getenv("KEY_ALIAS") ?: ""
-            keyPassword = System.getenv("KEY_PASSWORD") ?: ""
-            storeFile = file(System.getenv("KEYSTORE_PATH") ?: "")
-            storePassword = System.getenv("STORE_PASSWORD") ?: ""
+            keyAlias = findProperty("keyAlias") as String? ?: ""
+            keyPassword = findProperty("keyPassword") as String? ?: ""
+            storeFile = file(findProperty("storeFile") as String? ?: "")
+            storePassword = findProperty("storePassword") as String? ?: ""
         }
     }
 
@@ -36,14 +45,4 @@ android {
             )
         }
     }
-}
-
-        debug {
-            signingConfig = signingConfigs.getByName("release") // até debug vai sair assinado
-        }
-    }
-}
-
-flutter {
-    source = "../.."
 }
