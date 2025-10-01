@@ -1,0 +1,32 @@
+name: yoma_app_novo
+description: Aplicativo YOMA final para publicação
+
+# Ambiente de SDK
+environment:
+  sdk: '>=3.8.0 <4.0.0'
+
+# Dependências principais
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  # firebase_core: ^2.32.0
+  # cloud_firestore: ^5.0.0
+  # flutter_local_notifications: ^16.0.0
+  # geolocator: ^11.0.0
+
+# Dependências de desenvolvimento
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+# Configurações do Flutter
+flutter:
+  uses-material-design: true
+
+  # Caso você queira adicionar imagens e ícones, descomente e crie as pastas.
+  # assets:
+  #   - assets/images/
+  #   - assets/icons/

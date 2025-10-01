@@ -1,5 +1,5 @@
 {
- HEAD
+ PRODUCT_BUNDLE_IDENTIFIER = com.patriciagiorgetto.yoma;
     "name": "sfs",
     "short_name": "sfs",
 

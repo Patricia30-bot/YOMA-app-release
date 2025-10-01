@@ -6,37 +6,27 @@ plugins {
 
 android {
     namespace = "com.patriciagiorgetto.yoma"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-    }
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.patriciagiorgetto.yoma"
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        minSdk = 21
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
     }
 
     signingConfigs {
         create("release") {
-            storeFile = file("key.jks")
-            storePassword = System.getenv("CM_KEYSTORE_PASSWORD")
-            keyAlias = System.getenv("CM_KEY_ALIAS")
-            keyPassword = System.getenv("CM_KEY_PASSWORD")
+            keyAlias = System.getenv("KEY_ALIAS") ?: ""
+            keyPassword = System.getenv("KEY_PASSWORD") ?: ""
+            storeFile = file(System.getenv("KEYSTORE_PATH") ?: "")
+            storePassword = System.getenv("STORE_PASSWORD") ?: ""
         }
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             isShrinkResources = true
@@ -45,6 +35,9 @@ android {
                 "proguard-rules.pro"
             )
         }
+    }
+}
+
         debug {
             signingConfig = signingConfigs.getByName("release") // até debug vai sair assinado
         }

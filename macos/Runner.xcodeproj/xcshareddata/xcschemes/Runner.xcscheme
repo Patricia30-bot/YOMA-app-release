@@ -31,7 +31,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33CC10EC2044A3C60003C045"
- HEAD
+ PRODUCT_BUNDLE_IDENTIFIER = com.patriciagiorgetto.yoma;
             BuildableName = "sfs.app"
 
             BuildableName = "yoma_app_novo.app"
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33CC10EC2044A3C60003C045"
- HEAD
+ PRODUCT_BUNDLE_IDENTIFIER = com.patriciagiorgetto.yoma;
             BuildableName = "sfs.app"
 
             BuildableName = "yoma_app_novo.app"
@@ -91,7 +91,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33CC10EC2044A3C60003C045"
- HEAD
+ PRODUCT_BUNDLE_IDENTIFIER = com.patriciagiorgetto.yoma;
             BuildableName = "sfs.app"
 
             BuildableName = "yoma_app_novo.app"

@@ -24,14 +24,14 @@ set(FLUTTER_ICU_DATA_FILE "${EPHEMERAL_DIR}/icudtl.dat" PARENT_SCOPE)
 set(PROJECT_BUILD_DIR "${PROJECT_DIR}/build/" PARENT_SCOPE)
 set(AOT_LIBRARY "${PROJECT_DIR}/build/windows/app.so" PARENT_SCOPE)
 
-list(APPEND FLUTTER_LIBRARY_HEADERS
+list(APPEND FLUTTER_LIBRARY_PRODUCT_BUNDLE_IDENTIFIER = com.patriciagiorgetto.yoma;ERS
   "flutter_export.h"
   "flutter_windows.h"
   "flutter_messenger.h"
   "flutter_plugin_registrar.h"
   "flutter_texture_registrar.h"
 )
-list(TRANSFORM FLUTTER_LIBRARY_HEADERS PREPEND "${EPHEMERAL_DIR}/")
+list(TRANSFORM FLUTTER_LIBRARY_PRODUCT_BUNDLE_IDENTIFIER = com.patriciagiorgetto.yoma;ERS PREPEND "${EPHEMERAL_DIR}/")
 add_library(flutter INTERFACE)
 target_include_directories(flutter INTERFACE
   "${EPHEMERAL_DIR}"
@@ -90,7 +90,7 @@ add_dependencies(flutter_wrapper_app flutter_assemble)
 set(PHONY_OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/_phony_")
 set_source_files_properties("${PHONY_OUTPUT}" PROPERTIES SYMBOLIC TRUE)
 add_custom_command(
-  OUTPUT ${FLUTTER_LIBRARY} ${FLUTTER_LIBRARY_HEADERS}
+  OUTPUT ${FLUTTER_LIBRARY} ${FLUTTER_LIBRARY_PRODUCT_BUNDLE_IDENTIFIER = com.patriciagiorgetto.yoma;ERS}
     ${CPP_WRAPPER_SOURCES_CORE} ${CPP_WRAPPER_SOURCES_PLUGIN}
     ${CPP_WRAPPER_SOURCES_APP}
     ${PHONY_OUTPUT}
@@ -102,7 +102,7 @@ add_custom_command(
 )
 add_custom_target(flutter_assemble DEPENDS
   "${FLUTTER_LIBRARY}"
-  ${FLUTTER_LIBRARY_HEADERS}
+  ${FLUTTER_LIBRARY_PRODUCT_BUNDLE_IDENTIFIER = com.patriciagiorgetto.yoma;ERS}
   ${CPP_WRAPPER_SOURCES_CORE}
   ${CPP_WRAPPER_SOURCES_PLUGIN}
   ${CPP_WRAPPER_SOURCES_APP}
