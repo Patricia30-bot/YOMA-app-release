@@ -1,38 +1,23 @@
 workflows:
-  yoma_release:
-    name: "YOMA Release Build"
-    working_directory: .
+  android-release:
+    name: Android Release
     max_build_duration: 60
     environment:
-      flutter: "3.22.2"
+      flutter: 3.35.5
       xcode: latest
-      cocoapods: default
       vars:
-        APP_NAME: "YOMA"
         PACKAGE_NAME: "com.patriciagiorgetto.yoma"
     scripts:
-      # Limpar caches e dependências antigas
       - name: Clean project
         script: |
           flutter clean
-          rm -rf pubspec.lock
           flutter pub get
-
-      # Decodificar o keystore salvo em variável
-      - name: Decode Keystore
-        script: |
-          echo $CM_KEYSTORE | base64 --decode > android/app/key.jks
-
-      # Rodar build release
-      - name: Build AAB
+      - name: Build Android AAB
         script: |
           flutter build appbundle --release
-
     artifacts:
       - build/app/outputs/bundle/release/*.aab
-      - build/app/outputs/flutter-apk/*.apk
-
     publishing:
       email:
         recipients:
-          - "patydan50@gmail.com"
+          - "seuemail@gmail.com"
