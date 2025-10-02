@@ -5,8 +5,8 @@
     <application
         android:label="YOMA"
         android:icon="@mipmap/ic_launcher"
-        android:theme="@style/NormalTheme"
-
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/NormalTheme">
 
         <activity
             android:name=".MainActivity"
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
 
-        <!-- flutterEmbedding v2 obrigatório -->
+        <!-- Flutter Embedding v2 obrigatório -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
