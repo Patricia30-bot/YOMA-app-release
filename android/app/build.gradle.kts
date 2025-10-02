@@ -26,9 +26,12 @@ android {
     }
 signingConfigs {
     create("release") {
-        keyAlias = findProperty("keyAlias") as String? ?: ""
-        keyPassword = findProperty("keyPassword") as String? ?: ""
-        storePassword = findProperty("storePassword") as String? ?: ""
+        storeFile = file(System.getenv("CM_KEYSTORE_PATH") ?: "")
+        storePassword = System.getenv("KEYSTORE_PASSWORD") ?: ""
+        keyAlias = System.getenv("KEY_ALIAS") ?: ""
+        keyPassword = System.getenv("KEY_PASSWORD") ?: ""
+    }
+}
 
         val storeFilePath = findProperty("storeFile") as String?
         if (!storeFilePath.isNullOrBlank()) {

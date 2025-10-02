@@ -12,11 +12,19 @@ workflows:
         script: |
           flutter clean
           flutter pub get
+
+      - name: Decode keystore
+        script: |
+          echo $KEYSTORE_BASE64 | base64 --decode > /tmp/keystore.jks
+          export CM_KEYSTORE_PATH=/tmp/keystore.jks
+
       - name: Build Android AAB
         script: |
           flutter build appbundle --release
+
     artifacts:
       - build/app/outputs/bundle/release/*.aab
+
     publishing:
       email:
         recipients:
