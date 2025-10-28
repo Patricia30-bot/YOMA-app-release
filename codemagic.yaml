@@ -1,31 +1,81 @@
 workflows:
-  android-release:
-    name: Android Release
-    max_build_duration: 60
+  ios-release-final:
+    name: iOS Release - YOMA
+    max_build_duration: 120
     environment:
-      flutter: 3.35.5
+      flutter: stable
       xcode: latest
+      cocoapods: default
       vars:
-        PACKAGE_NAME: "com.patriciagiorgetto.yoma"
+        APP_NAME: "YOMA"
+        BUNDLE_ID: "com.patriciagiorgetto.yoma"
+        APPLE_TEAM_ID: "T95384B3A4"
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: "com.patriciagiorgetto.yoma"
+      groups:
+        - app_store_credentials
+        - signing_credentials
+        - firebase_credentials
     scripts:
-      - name: Clean project
+      - name: Instalar dependências Flutter
         script: |
-          flutter clean
           flutter pub get
 
-      - name: Decode keystore
+      - name: Limpar build anterior
         script: |
-          echo $KEYSTORE_BASE64 | base64 --decode > /tmp/keystore.jks
-          export CM_KEYSTORE_PATH=/tmp/keystore.jks
+          flutter clean
 
-      - name: Build Android AAB
+      - name: Compilar app iOS
         script: |
-          flutter build appbundle --release
+          flutter build ipa --release --no-codesign
 
     artifacts:
-      - build/app/outputs/bundle/release/*.aab
+      - build/ios/ipa/*.ipa
+      - build/ios/ipa/*.app
+      - flutter_drive.log
 
     publishing:
-      email:
-        recipients:
-          - "seuemail@gmail.com"
+      app_store_connect:
+        api_key: $APP_STORE_KEY_CONTENT
+        key_id: $APP_STORE_KEY_ID
+        issuer_id: $APP_STORE_ISSUER_ID
+        submit_to_testflight: true
+        submit_to_app_store: false
+
+
+  android-release-final:
+    name: Android Release - YOMA
+    max_build_duration: 120
+    environment:
+      flutter: stable
+      java: 17
+      vars:
+        APP_NAME: "YOMA"
+        PACKAGE_NAME: "com.patriciagiorgetto.yoma"
+      groups:
+        - google_play
+        - keystore_credentials
+        - firebase_credentials
+    scripts:
+      - name: Instalar dependências Flutter
+        script: |
+          flutter pub get
+
+      - name: Limpar build anterior
+        script: |
+          flutter clean
+
+      - name: Compilar APK e AAB
+        script: |
+          flutter build appbundle --release
+          flutter build apk --release
+
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
+      - build/app/outputs/bundle/release/app-release.aab
+
+    publishing:
+      google_play:
+        credentials: $GOOGLE_PLAY_SERVICE_ACCOUNT_JSON
+        track: internal
