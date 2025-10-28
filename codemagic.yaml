@@ -8,11 +8,8 @@ workflows:
       cocoapods: default
       vars:
         APP_NAME: "YOMA"
-        BUNDLE_ID: "com.patriciagiorgetto.yoma"
+        BUNDLE_ID: "com.patriciagiorgetto.yoma.final"
         APPLE_TEAM_ID: "T95384B3A4"
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: "com.patriciagiorgetto.yoma"
       groups:
         - app_store_credentials
         - signing_credentials
@@ -28,7 +25,7 @@ workflows:
 
       - name: Compilar app iOS
         script: |
-          flutter build ipa --release --no-codesign
+          flutter build ipa --release
 
     artifacts:
       - build/ios/ipa/*.ipa
